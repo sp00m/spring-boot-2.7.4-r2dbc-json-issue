@@ -11,9 +11,9 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import reactor.test.StepVerifier;
 
-@Testcontainers
 @SpringBootTest(classes = Application.class)
-@Import(MysqlConfig.class)
+@Testcontainers
+@Import(InitMysql.class)
 public class SomeTableRepositoryTest {
 
     @Container
