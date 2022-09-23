@@ -45,4 +45,12 @@ public class SomeTableRepositoryTest {
                 .verifyComplete();
     }
 
+    @Test
+    public void insert() throws JsonProcessingException {
+        StepVerifier
+                .create(someTableRepository.save(new SomeTable(null, new ObjectMapper().readTree("{\"foobar\": 42}"))))
+                .expectNextCount(1)
+                .verifyComplete();
+    }
+
 }
