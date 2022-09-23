@@ -1,5 +1,7 @@
 package base;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,10 +38,10 @@ public class SomeTableRepositoryTest {
     private SomeTableRepository someTableRepository;
 
     @Test
-    public void findById() {
+    public void findById() throws JsonProcessingException {
         StepVerifier
                 .create(someTableRepository.findById(1L))
-                .expectNext(new SomeTable(1L, "{}"))
+                .expectNext(new SomeTable(1L, new ObjectMapper().readTree("{}")))
                 .verifyComplete();
     }
 
